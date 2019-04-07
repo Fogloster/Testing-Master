@@ -1,11 +1,19 @@
+package tests;
+
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import utils.BaseRunner;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
+
+
 import static org.junit.Assert.*;
+
 
 /* Создано 01.04.18
    Автор: Сунгатуллин Р.И.
@@ -16,11 +24,13 @@ import static org.junit.Assert.*;
 
 public class SecondWebTests extends BaseRunner {
 
+    Logger logger = LoggerFactory.getLogger(SecondWebTests.class);
+
     @Test
     public void pageSwitcher() {
         String firstHandle = driver.getWindowHandle();
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        driver.get("https://google.ru/");
+        driver.get("https://yandex.ru/");
         driver.findElement(By.xpath("//input[contains(@aria-label,'Запрос')]"))
                 .sendKeys("Тинькофф мобайл");
         driver.findElement(By.xpath("//input[contains(@aria-label,'Запрос')]"))
@@ -43,6 +53,7 @@ public class SecondWebTests extends BaseRunner {
                     ids.forEach(id -> {
                         if (!id.equals(driver.getWindowHandle())) {
                             driver.switchTo().window(id);
+                            logger.info("Переключились к вкладке " + driver.getTitle());
                         }
                     });
                     String secondHandle = driver.getWindowHandle();
@@ -51,10 +62,9 @@ public class SecondWebTests extends BaseRunner {
                     driver.close();
                     driver.switchTo().window(secondHandle);
                     assertEquals("https://www.tinkoff.ru/mobile-operator/tariffs/", driver.getCurrentUrl());
+                    driver.close();
                     return driver.getTitle().equals("Мобильный оператор");
-
                 });
     }
 
 }
-

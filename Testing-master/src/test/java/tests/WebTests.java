@@ -1,8 +1,11 @@
+package tests;
+
 import org.junit.*;
 
 import static org.junit.Assert.*;
 
 import org.openqa.selenium.*;
+import utils.BaseRunner;
 
 /* Создано 24.03.18
    Автор: Сунгатуллин Р.И.
@@ -15,8 +18,8 @@ public class WebTests extends BaseRunner {
 
     @Test
     public void testEmptyValue() {
-        driver.get(baseUrl);
-        driver.findElement(By.name("name")).click();
+        driver.get("https://www.tinkoff.ru/career/vacancies/");
+        driver.findElement(By.xpath("//input[@name='name']")).click();
         driver.findElement(By.name("birthday")).click();
         driver.findElement(By.name("city")).click();
         driver.findElement(By.name("email")).click();
@@ -41,7 +44,7 @@ public class WebTests extends BaseRunner {
 
     @Test
     public void testInvalidValue() {
-        driver.get(baseUrl);
+        driver.get("https://www.tinkoff.ru/career/vacancies/");
         driver.findElement(By.name("name")).sendKeys("Артас123");
         driver.findElement(By.name("name")).sendKeys(Keys.ENTER);
         assertEquals("Допустимо использовать только буквы русского алфавита и дефис", driver.findElement(
