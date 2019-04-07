@@ -30,7 +30,7 @@ public class SecondWebTests extends BaseRunner {
     public void pageSwitcher() {
         String firstHandle = driver.getWindowHandle();
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        driver.get("https://yandex.ru/");
+        driver.get("https://google.ru/");
         driver.findElement(By.xpath("//input[contains(@aria-label,'Запрос')]"))
                 .sendKeys("Тинькофф мобайл");
         driver.findElement(By.xpath("//input[contains(@aria-label,'Запрос')]"))
