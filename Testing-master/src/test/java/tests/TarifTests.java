@@ -14,7 +14,7 @@ import utils.BaseRunner;
   Ниже расположены 2 сценария тестирования.
  *  */
 
-public class WebTests extends BaseRunner {
+public class TarifTests extends BaseRunner {
 
     @Test
     public void testEmptyValue() {
